@@ -1,3 +1,5 @@
+import os
+import re
 import urllib.parse
 import logging
 from typing import List, Tuple
@@ -80,7 +82,12 @@ class ConfigProcessor:
             return (
                 "https://url.v1.mk/sub?&url="
                 f"{encoded}&target=clash&config="
-@@ -37,123 +87,160 @@ def _process_url(self, url: str, is_complex: bool) -> str:
+                "https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSleepyHeeead"
+                "%2Fsubconverter-config%40master%2Fremote-config"
+                "%2Funiversal%2Furltest.ini&emoji=false"
+                "&append_type=true&append_info=true&scv=true"
+                "&udp=true&list=true&sort=false&fdn=true"
+                "&insert=false"
             )
         return url
 
