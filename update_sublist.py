@@ -55,7 +55,7 @@ class ConfigProcessor:
     def _replace_proxy_url(self, template: str, new_url: str) -> str:
         """جایگزینی URL در بخش proxy-providers"""
         pattern = re.compile(
-            r'(proxy-providers:\s*\n\s+proxy:\s*\n\s+type:\s*http\s*\n\s+url:\s*>?-?\s*\n\s+)([^\n]+)',
+            r'(proxy-providers:\s*\n\s+proxylist1:\s*\n\s+type:\s*http\s*\n\s+url:\s*>?-?\s*\n\s+)([^\n]+)',
             re.DOTALL
         )
         return pattern.sub(rf'\g<1>{new_url}', template)
