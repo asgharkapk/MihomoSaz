@@ -55,19 +55,18 @@ class ConfigProcessor:
     def _replace_proxy_url(self, template: str, new_url: str) -> str:
         """جایگزینی URL در بخش proxy-providers"""
         pattern = re.compile(
-            r'(proxy-providers:\s*\n\s+proxylist1:\s*\n\s+type:\s*http\s*\n\s+url:\s*>?-?\s*\n\s+)([^\n]+)',
-            re.DOTALL
-        )
-        return pattern.sub(rf'\g<1>{new_url}', template)
-
-    def _replace_proxy_path(self, template: str, new_path: str) -> str:
-        """جایگزینی path در بخش proxy-providers با دقت"""
-        # این الگو به دنبال خط 'include-all:' می‌گردد و سپس خط 'path:' را در خط بعدی جایگزین می‌کند.
-        pattern = re.compile(
-            r"(\n\s+include-all:\s*(?:true|false)\s*\n\s+path:\s*)([^\n]+)",
+            r"(url:\s*(?:>-\s*|\|-\s*)?\n\s*)([^\n]+)",
             re.IGNORECASE
         )
-        return pattern.sub(rf'\g<1>{new_path}', template, count=1)
+        return pattern.sub(rf"\1{new_url}", template, count=1)
+    
+    def _replace_proxy_path(self, template: str, new_path: str) -> str:
+        """جایگزینی path در بخش proxy-providers با دقت"""
+        pattern = re.compile(
+            r"(include-all:\s*(?:true|false)\s*\n\s*path:\s*)([^\n]+)",
+            re.IGNORECASE
+        )
+        return pattern.sub(rf"\1{new_path}", template, count=1)
 
     def _generate_readme(self, entries: List[Tuple[str, str]]) -> None:
         """تولید README با لینک مستقیم"""
