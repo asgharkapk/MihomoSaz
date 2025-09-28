@@ -1,10 +1,6 @@
 name: 🔄 به‌روزرسانی خودکار
 on:
   push:
-    paths:
-      - 'Complex_URL_list.txt'
-      - 'Simple_URL_List.txt'
-      - 'mihomo_template.txt'
   workflow_dispatch:
 
 jobs:
