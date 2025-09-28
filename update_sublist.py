@@ -17,36 +17,9 @@ class ConfigProcessor:
         self.template_path = "mihomo_template.txt"
         self.output_dir = "Sublist"
         self.readme_path = "README.md"
+        self.base_url = "https://raw.githubusercontent.com/asgharkapk/MihomoSaz/main/Sublist/"
         self.simple_list = "Simple_URL_List.txt"
         self.complex_list = "Complex_URL_list.txt"
-
-        # Dynamically detect repo URL
-        self.base_url = self._detect_repo_url()
-
-    def _detect_repo_url(self) -> str:
-        """
-        Detects the GitHub repository URL of the current project.
-        Falls back to default if detection fails.
-        """
-        try:
-            # Run `git remote get-url origin` to fetch repo URL
-            repo_url = subprocess.check_output(
-                ["git", "remote", "get-url", "origin"], 
-                stderr=subprocess.DEVNULL
-            ).decode().strip()
-
-            # Example: git@github.com:user/repo.git OR https://github.com/user/repo.git
-            if repo_url.startswith("git@"):
-                # Convert SSH form -> https://github.com/user/repo
-                repo_url = repo_url.replace(":", "/").replace("git@", "https://")
-            if repo_url.endswith(".git"):
-                repo_url = repo_url[:-4]
-
-            # Build raw content base URL
-            return repo_url.replace("https://github.com", "https://raw.githubusercontent.com") + "/main/Sublist/"
-        except Exception:
-            # Fallback default
-            return "https://raw.githubusercontent.com/10ium/MihomoSaz/main/Sublist/"
 
     def _process_url(self, url: str, is_complex: bool) -> str:
         """پردازش URL بر اساس نوع لیست"""
