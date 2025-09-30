@@ -2336,8 +2336,7 @@ proxy-groups:
     use:
       - proxylist1
     filter: "RELAY"
-  
-- name: 🌍Others
+  - name: 🌍Others
     type: url-test
     url: https://www.facebook.com
     tolerance: 300
