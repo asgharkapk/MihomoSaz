@@ -29,7 +29,7 @@ dns:
   cache-algorithm: arc   
   use-system-hosts: true
   use-host: true
-  listen: 0.0.0.0:53
+  #listen: 0.0.0.0:53
   enhanced-mode: fake-ip
   fake-ip-filter-mode: blacklist
   fake-ip-range: 198.18.0.1/16
@@ -937,4 +937,5 @@ ntp:
   server: "time.apple.com"
   port: 123
   interval: 30
+
 
